@@ -8,6 +8,11 @@ RUN apt-get install -y aptly
 
 ADD conf/aptly.conf /etc/
 
+RUN gpg --list-keys
+ADD conf/gpg.conf /tmp/
+RUN cat /tmp/gpg.conf >> /root/.gnupg/gpg.conf
+RUN rm /tmp/gpg.conf
+
 RUN mkdir /miktex
 ADD scripts/*.sh /miktex/
 
