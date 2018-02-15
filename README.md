@@ -34,6 +34,9 @@ or build it yourself:
    [aptly](https://www.aptly.info).  The aptly root directory must be
    mounted to the container path `/miktex/aptly`.
 
+You should specify a user by setting the container environment
+variables `USER_ID` and `GROUP_ID`.
+
 ### Example
 
 Create a repository containing MiKTeX deb packages for Ubuntu 16.04
@@ -47,5 +50,7 @@ Create a repository containing MiKTeX deb packages for Ubuntu 16.04
       -v ~/work/miktex/xenial:/miktex/debs:ro \
       -v /tmp/shred.me:/miktex/signing.sec:ro \
       -v ~/work/miktex/aptly:/miktex/aptly:rw \
+      -e USER_ID=`id -u` \
+      -e GROUP_ID=`id -g` \
       miktex/miktex-repo-deb xenial universe
     shred -u /tmp/shred.me
