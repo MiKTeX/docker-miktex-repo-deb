@@ -1,6 +1,6 @@
 FROM ubuntu:xenial
 
-LABEL Description="Debian repository management for MiKTeX" Vendor="Christian Schenk" Version="2.9.6699"
+LABEL Description="Debian repository management for MiKTeX" Vendor="Christian Schenk" Version="2.9.6707"
 
 RUN    apt-key adv --keyserver keys.gnupg.net --recv-keys 9E3E53F19C7DE460 \
     && apt-get update \
@@ -26,4 +26,4 @@ COPY scripts/*.sh /miktex/
 COPY entrypoint.sh /miktex/
 
 ENTRYPOINT ["/miktex/entrypoint.sh"]
-CMD ["/miktex/show.sh"]
+CMD ["/miktex/repo-show.sh"]

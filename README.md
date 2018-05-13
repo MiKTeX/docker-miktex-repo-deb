@@ -1,4 +1,4 @@
-# Docker image for managing a MiKTeX-specific Debian package repository
+# Docker image for managing a MiKTeX-specific local Debian/Ubuntu package repository
 
 ## Obtaining the image
 
@@ -14,7 +14,7 @@ or build it yourself:
 
 ### Prerequisites
 
-1. The directory containing the .deb file(s) must be mounted to the
+1. The directory containing the `.deb` file(s) must be mounted to the
    container path `/miktex/debs`.
 
 2. The secret key file for GPG signing must be mounted to the
@@ -39,14 +39,14 @@ variables `USER_ID` and `GROUP_ID`.
 
 ### Example
 
-Create a repository containing MiKTeX deb packages for Ubuntu 16.04
+Create a repository containing MiKTeX `.deb` packages for Ubuntu 16.04
 (Xenial).
 
     mkdir -p ~/work/miktex/xenial
     # create .deb files in ~/work/miktex/xenial
     gpg --export-secret-keys > /tmp/shred.me
     mkdir -p ~/work/miktex/aptly
-    docker run --rm -ti \
+    docker run --rm -t \
       -v ~/work/miktex/xenial:/miktex/debs:ro \
       -v /tmp/shred.me:/miktex/signing.sec:ro \
       -v ~/work/miktex/aptly:/miktex/aptly:rw \
