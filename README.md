@@ -53,5 +53,5 @@ Create a repository containing MiKTeX `.deb` packages for Ubuntu 16.04
       -e USER_ID=`id -u` \
       -e GROUP_ID=`id -g` \
       miktex/miktex-repo-deb \
-      /miktex/manage-repository.sh xenial universe
+      /miktex/manage-repository.sh add xenial universe
     shred -u /tmp/shred.me

@@ -10,21 +10,21 @@ if [ ! -d /miktex/aptly/public/dists/$distribution/$component ]; then
 fi
 case $command in
     add)
-	aptly repo add miktex-$distribution /miktex/debs/*.deb
-	;;
+        aptly repo add miktex-$distribution /miktex/debs/*.deb
+        ;;
     publish)
-	aptly publish update "$passphrase_arg" $distribution
-	;;
+        aptly publish update "$passphrase_arg" $distribution
+        ;;
     cleanup)
-	j2000_today=$(( ($(date +%s) - $(date --date="000101" +%s) ) / (60*60*24) ))
-	j2000=$(( $j2000_today - 365 ))
-	aptly repo remove miktex-$distribution "miktex (< 2.9.$j2000)"
-	;;
+        j2000_today=$(( ($(date +%s) - $(date --date="000101" +%s) ) / (60*60*24) ))
+        j2000=$(( $j2000_today - 365 ))
+        aptly repo remove miktex-$distribution "miktex (< 2.9.$j2000)"
+        ;;
     show)
-	aptly repo show -with-packages miktex-$distribution
-	;;
+        aptly repo show -with-packages miktex-$distribution
+        ;;
     *)
-	echo "unknown command"
-	exit 1
-	;;
+        echo "unknown command"
+        exit 1
+        ;;
 esac
