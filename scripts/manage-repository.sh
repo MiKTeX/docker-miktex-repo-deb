@@ -16,9 +16,10 @@ case $command in
         aptly publish update "$passphrase_arg" $distribution
         ;;
     cleanup)
-        j2000_today=$(( ($(date +%s) - $(date --date="000101" +%s) ) / (60*60*24) ))
-        j2000=$(( $j2000_today - 365 ))
-        aptly repo remove miktex-$distribution "miktex (< 2.9.$j2000)"
+        current_year=$(date +'%y')
+        current_month=$(date +'%-m')
+        last_year=$(( $current_year - 1 ))
+        aptly repo remove miktex-$distribution "miktex (< $last_year.$current_month)"
         ;;
     show)
         aptly repo show -with-packages miktex-$distribution
